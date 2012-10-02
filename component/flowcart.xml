@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+	<name>COM_FLOWCART</name>
+	<creationDate>October 2012</creationDate>
+	<author>Seth Warburton | Roberto Segura</author>
+	<authorEmail>social@flowcart.me</authorEmail>
+	<authorUrl>http://www.flowcart.me</authorUrl>
+	<copyright>Copyright (C) 2012 Flowcart. All rights reserved.</copyright>
+	<license>License Info</license>
+	<version>0.0.1</version>
+	<description>COM_FLOWCART_XML_DESC</description>
+
+	<update>
+	        <schemas>
+	                <schemapath type="mysql">sql/updates/mysql</schemapath>
+	        </schemas>
+	</update>
+	<files folder="site">
+	        <folder>language</folder>
+	        <folder>views</folder>
+	        <filename>controller.php</filename>
+	        <filename>flowcart.php</filename>
+	        <filename>index.html</filename>
+	</files>
+
+	<administration>
+		<menu>COM_FLOWCART</menu>
+		<files folder="admin">
+		        <folder>language</folder>
+		        <folder>sql</folder>
+		        <folder>views</folder>
+		        <filename>config.xml</filename>
+		        <filename>controller.php</filename>
+		        <filename>flowcart.php</filename>
+		        <filename>index.html</filename>
+		</files>
+        <languages folder="admin">
+                <language tag="en-GB">language/en-GB/en-GB.com_flowcart.sys.ini</language>
+        </languages>
+    </administration>
+</extension>

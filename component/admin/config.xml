@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+        <fieldset
+                name="Basic"
+                label="COM_FLOWCART_CONFIG_BASIC_SETTINGS_LABEL"
+                description="COM_FLOWCART_CONFIG_BASIC_SETTINGS_DESC"
+        >
+        </fieldset>
+</config>
