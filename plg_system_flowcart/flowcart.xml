@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>PLG_SYSTEM_FLOWCART</name>
+	<author>Seth Warburton | Roberto Segura</author>
+	<creationDate>November 2012</creationDate>
+	<copyright>Copyright (C) 2012 Flowcart. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>social@flowcart.me</authorEmail>
+	<authorUrl>http://www.flowcart.me</authorUrl>
+	<version>0.0.1</version>
+	<description>PLG_SYSTEM_FLOWCART_XML_DESC</description>
+	<files>
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>language</folder>
+		<filename plugin="flowcart">flowcart.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages>
+		<!-- en-GB -->
+		<language tag="en-GB">language/en-GB/en-GB.plg_system_flowcart.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_system_flowcart.sys.ini</language>
+	</languages>
+	<config>
+	<fields name="params">
+		<fieldset name="basic">
+		</fieldset>
+		<fieldset name="advanced">
+		</fieldset>
+	</fields>
+	</config>
+</extension>
