@@ -1,6 +1,4 @@
-PLG_SYS_DDBASE
-==============  
+Flowcart - Content Plugin
+==========================  
 
-Base System Plugin for Joomla 2.5.x by [Roberto Segura](http://www.twitter.com/phproberto) - [Digital Disseny, S.L.](http://www.digitaldisseny.com)
-
-Use it as starting point to fastly develop Joomla! system plugins.
+Flowcart Content Plugin for Joomla! 2.5.x & 3.0.x by [Seth Warburton](http://twitter.com/nternetinspired) & [Roberto Segura](http://www.twitter.com/phproberto)

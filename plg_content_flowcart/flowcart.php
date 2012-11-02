@@ -300,9 +300,6 @@ class PlgContentFlowcart extends JPlugin
 	 * @param   string  $type      url || script
 	 *
 	 * @return none
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 27/06/2012
 	 */
 	private function _addJsCall($jsUrl, $position = null, $type = 'url')
 	{
@@ -339,10 +336,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Initialize folder structure
 	 *
 	 * @return none
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 28/06/2012
-	 *
 	 */
 	private function _initFolders()
 	{
@@ -359,10 +352,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Load / inject CSS
 	 *
 	 * @return none
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 27/06/2012
-	 *
 	 */
 	private function _loadCSS()
 	{
@@ -401,10 +390,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Load / inject Javascript
 	 *
 	 * @return none
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 27/06/2012
-	 *
 	 */
 	private function _loadJS()
 	{
@@ -443,10 +428,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Validate if the plugin is enabled for current application (frontend / backend)
 	 *
 	 * @return boolean
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 28/06/2012
-	 *
 	 */
 	private function _validateApplication()
 	{
@@ -462,10 +443,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Validate option in url
 	 *
 	 * @return boolean
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 28/06/2012
-	 *
 	 */
 	private function _validateComponent()
 	{
@@ -480,10 +457,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Custom method for extra validations
 	 *
 	 * @return boolean
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 28/06/2012
-	 *
 	 */
 	private function _validateExtra()
 	{
@@ -494,10 +467,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Plugin enabled for this url?
 	 *
 	 * @return boolean
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 28/06/2012
-	 *
 	 */
 	private function _validateUrl()
 	{
@@ -519,10 +488,6 @@ class PlgContentFlowcart extends JPlugin
 	 * Validate view parameter in url
 	 *
 	 * @return boolean
-	 *
-	 * @author Roberto Segura - Digital Disseny, S.L.
-	 * @version 28/06/2012
-	 *
 	 */
 	private function _validateView()
 	{
