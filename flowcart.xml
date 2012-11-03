@@ -9,13 +9,13 @@
 	<license>License Info</license>
 	<version>0.0.1</version>
 	<description>COM_FLOWCART_XML_DESC</description>
-
+	<scriptfile>install.php</scriptfile>
 	<update>
 	        <schemas>
 	                <schemapath type="mysql">sql/updates/mysql</schemapath>
 	        </schemas>
 	</update>
-	<files folder="site">
+	<files folder="component/site">
 	        <folder>language</folder>
 	        <folder>views</folder>
 	        <filename>controller.php</filename>
@@ -25,7 +25,7 @@
 
 	<administration>
 		<menu>COM_FLOWCART</menu>
-		<files folder="admin">
+		<files folder="component/admin">
 		        <folder>language</folder>
 		        <folder>sql</folder>
 		        <folder>views</folder>
@@ -34,8 +34,22 @@
 		        <filename>flowcart.php</filename>
 		        <filename>index.html</filename>
 		</files>
-        <languages folder="admin">
+        <languages folder="component/admin">
                 <language tag="en-GB">language/en-GB/en-GB.com_flowcart.sys.ini</language>
         </languages>
     </administration>
+	<!-- Libraries to install -->
+	<libraries>
+		<library name="flowcart" />
+	</libraries>
+	<!-- Modules to install -->
+	<modules>
+		<module name="mod_k2_user" client="site" />
+		<module name="mod_k2_quickicons" client="admin" />
+	</modules>
+    <!-- Plugins to install -->
+	<plugins>
+		<plugin name="flowcart" group="content" />
+		<plugin name="flowcart" group="system" />
+	</plugins>
 </extension>
