@@ -220,8 +220,8 @@ class Com_FlowcartInstallerScript
 	/**
 	 * Store the result of trying to install an extension
 	 *
-	 * @param   strin  $type    Type of extension (libraries, modules, plugins)
-	 * @param   array  $status  The status info
+	 * @param   string  $type    Type of extension (libraries, modules, plugins)
+	 * @param   array   $status  The status info
 	 *
 	 * @return void
 	 */
