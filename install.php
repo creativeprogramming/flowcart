@@ -20,6 +20,10 @@ defined('_JEXEC') or die;
  */
 class Com_FlowcartInstallerScript
 {
+	var $status = null;
+
+	var $installer = null;
+
 	/**
 	 * Method to install the component
 	 *
@@ -29,7 +33,10 @@ class Com_FlowcartInstallerScript
 	 */
 	function install($parent)
 	{
-		$this->_baseInstall($parent);
+		// Install extensions
+		$this->installLibraries($parent);
+		$this->installModules($parent);
+		$this->installPlugins($parent);
 	}
 
 	/**
@@ -53,7 +60,10 @@ class Com_FlowcartInstallerScript
 	 */
 	function update($parent)
 	{
-		$this->_baseInstall($parent);
+		// Install extensions
+		$this->installLibraries($parent);
+		$this->installModules($parent);
+		$this->installPlugins($parent);
 	}
 
 	/**
@@ -83,68 +93,153 @@ class Com_FlowcartInstallerScript
 	}
 
 	/**
-	 * Default installation method to process libraries, modules and plugins
+	 * Install the package libraries
 	 *
 	 * @param   object  $parent  class calling this method
 	 *
-	 * @return [type]         [description]
+	 * @return  void
 	 */
-	private function _baseInstall($parent)
+	private function installLibraries($parent)
 	{
-	    $status = new stdClass;
-		$status->libraries = array();
-		$status->modules   = array();
-		$status->plugins   = array();
+		// Required objects
+		$installer = $this->getInstaller();
+		$manifest  = $parent->get('manifest');
+		$src       = $parent->getParent()->getPath('source');
 
-		$installer = new JInstaller;
-		$manifest = $parent->get('manifest');
-		$src = $parent->getParent()->getPath('source');
-
-		// Install libraries
-		if ($libraries = $manifest->libraries)
+		if ($nodes = $manifest->libraries->library)
 		{
-			foreach ($libraries->library as $library)
+			foreach ($nodes as $node)
 			{
-				$extName = $library->attributes()->name;
+				$extName = $node->attributes()->name;
 				$extPath = $src . '/libraries/' . $extName;
+				$result  = 0;
 				if (is_dir($extPath))
 				{
 					$result = $installer->install($extPath);
-					$status->libraries[] = array('name' => $extName, 'result' => $result);
 				}
+				$this->_storeStatus('libraries', array('name' => $extName, 'result' => $result));
 			}
 		}
 
-		// Install modules
-		if ($modules = $manifest->modules)
+	}
+
+	/**
+	 * Install the package modules
+	 *
+	 * @param   object  $parent  class calling this method
+	 *
+	 * @return  void
+	 */
+	private function installModules($parent)
+	{
+		// Required objects
+		$installer = $this->getInstaller();
+		$manifest  = $parent->get('manifest');
+		$src       = $parent->getParent()->getPath('source');
+
+		if ($nodes = $manifest->modules->module)
 		{
-			foreach ($modules->module as $module)
+			foreach ($nodes as $node)
 			{
-				$extName   = $module->attributes()->name;
-				$extClient = $module->attributes()->client;
+				$extName   = $node->attributes()->name;
+				$extClient = $node->attributes()->client;
 				$extPath   = $src . '/modules/' . $extClient . '/' . $extName;
+				$result    = 0;
 				if (is_dir($extPath))
 				{
 					$result = $installer->install($extPath);
-					$status->modules[] = array('name' => $extName, 'client' => $extClient, 'result' => $result);
+				}
+				$this->_storeStatus('modules', array('name' => $extName, 'client' => $extClient, 'result' => $result));
+			}
+		}
+
+	}
+
+	/**
+	 * Install the package libraries
+	 *
+	 * @param   object  $parent  class calling this method
+	 *
+	 * @return  void
+	 */
+	private function installPlugins($parent)
+	{
+		// Required objects
+		$installer = $this->getInstaller();
+		$manifest  = $parent->get('manifest');
+		$src       = $parent->getParent()->getPath('source');
+
+		if ($nodes = $manifest->plugins->plugin)
+		{
+			foreach ($nodes as $node)
+			{
+				$extName  = $node->attributes()->name;
+				$extGroup = $node->attributes()->group;
+				$extPath  = $src . '/plugins/' . $extGroup . '/' . $extName;
+				$result   = 0;
+				if (is_dir($extPath))
+				{
+					$result = $installer->install($extPath);
+				}
+
+				// Store the result to show install summary later
+				$this->_storeStatus('plugins', array('name' => $extName, 'group' => $extGroup, 'result' => $result));
+
+				// Enable the installed plugin
+				if ($result)
+				{
+					$db = JFactory::getDBO();
+					$query = $db->getQuery(true);
+					$query->update($db->quoteName("#__extensions"));
+					$query->set("enabled=1");
+					$query->where("type='plugin'");
+					$query->where("element=" . $db->Quote($extName));
+					$query->where("folder=" . $db->Quote($extGroup));
+					$db->setQuery($query);
+					$db->query();
 				}
 			}
 		}
 
-		// Install plugins
-		if ($plugins = $manifest->plugins)
+	}
+
+	/**
+	 * Get the common JInstaller instance used to install all the extensions
+	 *
+	 * @return JInstaller The JInstaller object
+	 */
+	function getInstaller()
+	{
+		if (is_null($this->installer))
 		{
-			foreach ($plugins->plugin as $plugin)
-			{
-				$extName  = $plugin->attributes()->name;
-				$extGroup = $plugin->attributes()->group;
-				$extPath  = $src . '/plugins/' . $extGroup . '/' . $extName;
-				if (is_dir($extPath))
-				{
-					$result = $installer->install($extPath);
-					$status->plugins[] = array('name' => $extName, 'group' => $extGroup, 'result' => $result);
-				}
-			}
+			$this->installer = new JInstaller;
 		}
+		return $this->installer;
+	}
+
+	/**
+	 * Store the result of trying to install an extension
+	 *
+	 * @param   strin  $type    Type of extension (libraries, modules, plugins)
+	 * @param   array  $status  The status info
+	 *
+	 * @return void
+	 */
+	private function _storeStatus($type, $status)
+	{
+		// Initialise status object if needed
+		if (is_null($this->status))
+		{
+			$this->status = new stdClass;
+		}
+
+		// Initialise current status type if needed
+		if (!isset($this->status->{$type}))
+		{
+			$this->status->{$type} = array();
+		}
+
+		// Insert the status
+		array_push($this->status->{$type}, $status);
 	}
 }

@@ -44,8 +44,6 @@
 	</libraries>
 	<!-- Modules to install -->
 	<modules>
-		<module name="mod_k2_user" client="site" />
-		<module name="mod_k2_quickicons" client="admin" />
 	</modules>
     <!-- Plugins to install -->
 	<plugins>
