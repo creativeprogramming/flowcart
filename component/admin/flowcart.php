@@ -11,12 +11,26 @@ defined('_JEXEC') or die;
 
 JLoader::import('joomla.application.component.controller');
 
-// Get an instance of the controller prefixed by HelloWorld
-$controller = JControllerLegacy::getInstance('Flowcart');
+// Get query data
+$input      = JFactory::getApplication()->input;
+$task       = $input->get('task', 'Panel');
+$controller = $input->get('view', 'panel');
 
-// Perform the Request task
-$input = JFactory::getApplication()->input;
-$controller->execute($input->get('task', 'Panel'));
+// Create the controller instance
+$controllerPath = JPATH_COMPONENT_ADMINISTRATOR . '/controllers/' . $controller . '.php';
+if (file_exists($controllerPath))
+{
+	require_once $controllerPath;
+	$controllerName = 'FlowcartController' . $controller;
+	$controller     = new $controllerName;
+}
+else
+{
+	// Load the default controller
+	$controller = JControllerLegacy::getInstance('Flowcart');
+}
+
+$controller->execute($task);
 
 // Redirect if set by the controller
 $controller->redirect();

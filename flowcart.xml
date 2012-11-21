@@ -25,6 +25,12 @@
 
 	<administration>
 		<menu>COM_FLOWCART</menu>
+        <submenu>
+            <menu view="products" link="option=com_flowcart&amp;view=products">COM_FLOWCART_PRODUCTS</menu>
+            <menu view="orders" link="option=com_flowcart&amp;view=orders">COM_FLOWCART_ORDERS</menu>
+            <menu view="taxes" link="option=com_flowcart&amp;view=taxes">COM_FLOWCART_TAXES</menu>
+            <menu view="currencies" link="option=com_flowcart&amp;view=currencies">COM_FLOWCART_CURRENCIES</menu>
+        </submenu>
 		<files folder="component/admin">
 		        <folder>language</folder>
 		        <folder>sql</folder>
