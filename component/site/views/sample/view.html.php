@@ -1,7 +1,7 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  com_flowcart
+ * @package     Flowcart.Component
+ * @subpackage  Site
  *
  * @author      Seth Warburton & Roberto Segura <social@flowcart.me>
  * @copyright   (c) 2012 Flowcart. All Rights Reserved.
@@ -14,8 +14,8 @@ JLoader::import('joomla.application.component.view');
 /**
  * Flowcart Sample View
  *
- * @package     Joomla.Site
- * @subpackage  com_flowcart
+ * @package     Flowcart.Component
+ * @subpackage  Site
  *
  * @since       2.5
  */

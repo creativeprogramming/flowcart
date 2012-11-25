@@ -1,7 +1,7 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_flowcart
+ * @package     Flowcart.Component
+ * @subpackage  Administrator
  *
  * @author      Seth Warburton & Roberto Segura <social@flowcart.me>
  * @copyright   (c) 2012 Flowcart. All Rights Reserved.

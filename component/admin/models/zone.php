@@ -9,28 +9,23 @@
  */
 defined('_JEXEC') or die;
 
-JLoader::import('joomla.application.component.controller');
+JLoader::import('flowcart.classes.model');
 
 /**
- * Flowcart Zone Form Controller
+ * Flowcart Zone Model
  *
+ * @version     25/11/2012
  * @package     Flowcart.Component
  * @subpackage  Administrator
- *
  * @since       2.5
+ *
  */
-class FlowcartControllerZone extends JControllerLegacy
+class FlowcartModelZone extends FlowcartClassesModel
 {
 	/**
-	 * Display method
-	 *
-	 * @param   boolean  $cachable   Cache display
-	 * @param   array    $urlparams  urlparams
-	 *
-	 * @return void
+	 * @var		string	The prefix to use with controller messages.
+	 * @since	2.5
 	 */
-	function display($cachable = false, $urlparams = array())
-	{
-		parent::display();
-	}
+	protected $text_prefix = 'COM_FLOWCART';
+
 }
