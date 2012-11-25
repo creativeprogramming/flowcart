@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="library" method="upgrade" version="2.5">
+	<name>Flowcart - Libraries</name>
+	<libraryname>flowcart</libraryname>
+	<author>Seth Warburton | Roberto Segura</author>
+	<creationDate>November 2012</creationDate>
+	<copyright>Copyright (C) 2012</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>social@flowcart.me</authorEmail>
+	<authorUrl>http://www.flowcart.me</authorUrl>
+	<version>0.0.1</version>
+	<description>Flowcart Libraries</description>
+	<files>
+		<folder>classes</folder>
+		<folder>helpers</folder>
+		<filename>index.html</filename>
+	</files>
+</extension>
