@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="attribs" >
+		<fieldset name="flowcart" label="PLG_CONTENT_FLOWCART_GROUP" >
+			<field
+				name="product_enabled"
+				type="radio"
+				id="flowcart_enabled"
+				default="0"
+				label="PLG_CONTENT_FLOWCART_PRODUCT_ENABLED_LABEL"
+				description="PLG_CONTENT_FLOWCART_PRODUCT_ENABLED_DESC"
+				message="PLG_CONTENT_FLOWCART_PRODUCT_ENABLED">
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+			</field>
+		</fieldset>
+	</fields>
+</form>

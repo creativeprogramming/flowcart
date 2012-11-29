@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 JLoader::import('joomla.plugin.plugin');
+JLoader::import('flowcart.helpers.document');
 
 /**
  * Main plugin class
@@ -210,6 +211,89 @@ class PlgContentFlowcart extends JPlugin
 		{
 			return true;
 		}
+	}
+
+	/**
+	 * Add the flowcart params to the article view
+	 *
+	 * @param  Jform  $form  The jForm object
+	 * @param  [type] $data [description]
+	 *
+	 * @return boolean
+	 */
+	function onContentPrepareForm($form, $data)
+	{
+		// Verify that we have a valid JForm object
+		if (!($form instanceof JForm))
+		{
+			$this->_subject->setError('JERROR_NOT_A_FORM');
+			return false;
+		}
+
+		// Only add data to the article form
+		if ($form->getName() != 'com_content.article')
+		{
+			return true;
+		}
+
+		// Required objects
+		$doc = JFactory::getDocument();
+
+		// Load CSS
+		if (version_compare(JVERSION, '3.0', 'ge'))
+		{
+			$doc->addStyleSheet($this->_urlCss . '/flowcart.j30.css');
+		}
+		else
+		{
+			$doc->addStyleSheet($this->_urlCss . '/flowcart.j25.css');
+		}
+
+		// Load JS
+		$doc->addScript($this->_urlJs . '/flowcart.jquery.js');
+		// $doc->addScript($this->_urlJs . '/flowcart.mootools.js');
+
+		// Add our custom form and our custom fields
+		JForm::addFormPath(dirname(__FILE__) . '/forms');
+		JForm::addFieldPath(dirname(__FILE__) . '/fields');
+		$form->loadFile('article', false);
+
+
+/*
+		$doc = &JFactory::getDocument();
+		$doc->addStyleSheet(JURI::base().'components'.DS.'com_j2store'.DS.'css'.DS.'style.css');
+
+		// Add the registration fields to the form.
+		JForm::addFormPath(dirname(__FILE__).'/j2store');
+		JForm::addFieldPath(dirname(__FILE__).'/j2store/fields');
+		$form->loadFile('j2store', false);
+
+		// Load the data from j2store_prices table into the form
+		$articleId = isset($data->id) ? $data->id : 0;
+
+		// Load the price data from the database.
+		$db = JFactory::getDbo();
+		$db->setQuery(
+				'SELECT article_id,item_price,item_tax,item_shipping,item_sku,product_enabled FROM #__j2store_prices' .
+				' WHERE article_id = '.(int) $articleId);
+		$price = $db->loadObject();
+
+		// Check for a database error.
+		if ($db->getErrorNum())
+		{
+			$this->_subject->setError($db->getErrorMsg());
+			return false;
+		}
+*/
+		if( isset($price) )
+		{
+			$data->attribs['product_enabled']=$price->product_enabled;
+			$data->attribs['item_price']=$price->item_price;
+			$data->attribs['item_tax']=$price->item_tax;
+			$data->attribs['item_shipping']=$price->item_shipping;
+			$data->attribs['item_sku']=$price->item_sku;
+		}
+		return true;
 	}
 
 	/**

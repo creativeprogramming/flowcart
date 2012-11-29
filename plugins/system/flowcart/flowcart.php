@@ -195,6 +195,47 @@ class PlgSystemFlowcart extends JPlugin
 		{
 			return true;
 		}
+
+		$app = JFactory::getApplication();
+
+		$injectPosition = 'headtop';
+
+		$jquery = 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
+		$this->_addJsCall($jquery, $injectPosition);
+		$this->_addJsCall('jQuery.noConflict();', $injectPosition, 'script');
+
+		// Bootstrap CSS - loaded in header
+		if (!$app->isSite())
+		{
+			$bootstrapCss = JURI::root() . 'media/flowcart/assets/css/bootstrap-noconflict.css';
+		}
+		else
+		{
+			$bootstrapCss = JURI::root() . 'media/flowcart/assets/css/bootstrap.min.css';
+		}
+		$this->_addCssCall($bootstrapCss, $injectPosition);
+
+		// Bootstrap responsive CSS
+		$bootstrapResponsiveCss = JURI::root() . 'media/flowcart/assets/css/bootstrap-responsive.min.css';
+		$this->_addCssCall($bootstrapResponsiveCss, $injectPosition);
+
+		// Bootstrap JS - loaded before body ending
+		$bootstrapJs = JURI::root() . 'media/flowcart/assets/js/bootstrap.min.js';
+		$this->_addJsCall($bootstrapJs, 'bodybottom');
+
+		// CSS load
+		if (!empty($this->_cssCalls))
+		{
+			$this->_loadCSS();
+		}
+
+		// JS load
+		if (!empty($this->_jsCalls))
+		{
+			$this->_loadJS();
+		}
+
+		return true;
 	}
 
 	/**
