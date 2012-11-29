@@ -35,6 +35,9 @@
 	        <filename>flowcart.php</filename>
 	        <filename>index.html</filename>
 	</files>
+	<media destination="flowcart" folder="media/flowcart">
+		<folder>assets</folder>
+	</media>
 
 	<administration>
 		<menu>COM_FLOWCART</menu>
@@ -43,13 +46,17 @@
             <menu view="orders" link="option=com_flowcart&amp;view=orders">COM_FLOWCART_ORDERS</menu>
             <menu view="taxes" link="option=com_flowcart&amp;view=taxes">COM_FLOWCART_TAXES</menu>
             <menu view="currencies" link="option=com_flowcart&amp;view=currencies">COM_FLOWCART_CURRENCIES</menu>
+            <menu view="zones" link="option=com_flowcart&amp;view=zones">COM_FLOWCART_ZONES</menu>
         </submenu>
 		<files folder="component/admin">
 				<folder>controllers</folder>
+				<folder>helpers</folder>
 		        <folder>language</folder>
 		        <folder>models</folder>
 		        <folder>sql</folder>
+		        <folder>tables</folder>
 		        <folder>views</folder>
+		        <filename>access.xml</filename>
 		        <filename>config.xml</filename>
 		        <filename>controller.php</filename>
 		        <filename>flowcart.php</filename>
