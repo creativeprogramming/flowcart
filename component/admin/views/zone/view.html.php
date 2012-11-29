@@ -40,6 +40,9 @@ class FlowcartViewZone extends JViewLegacy
 			$this->addToolbar();
 		}
 
+		$this->form	= $this->get('Form');
+		$this->item	= $this->get('Item');
+
 		// Display the template
 		parent::display($tpl);
 	}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="hidden"
+			default="0"
+			label="COM_FLOWCART_ZONE_ID_LABEL"
+			DESCRIPTION="COM_FLOWCART_ZONE_ID_DESC"
+			readonly="true"
+			size="10"
+		/>
+		<field name="name" type="text"
+			description="COM_FLOWCART_ZONE_NAME_DESC"
+			label="COM_FLOWCART_ZONE_NAME"
+			required="true"
+			size="30"
+		/>
+		<field name="state" type="radio"
+			description="COM_FLOWCART_ZONE_ACTIVE"
+			label="COM_FLOWCART_ZONE_ACTIVE_DESC"
+			required="true"
+			size="1" default="1" >
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+</form>

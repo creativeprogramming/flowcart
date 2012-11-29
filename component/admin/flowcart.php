@@ -9,28 +9,13 @@
  */
 defined('_JEXEC') or die;
 
-JLoader::import('joomla.application.component.controller');
-
-// Get query data
-$input      = JFactory::getApplication()->input;
-$task       = $input->get('task', 'Panel');
-$controller = $input->get('view', 'panel');
-
-// Create the controller instance
-$controllerPath = JPATH_COMPONENT_ADMINISTRATOR . '/controllers/' . $controller . '.php';
-if (file_exists($controllerPath))
+// Access check.
+if (!JFactory::getUser()->authorise('core.manage', 'com_flowcart'))
 {
-	require_once $controllerPath;
-	$controllerName = 'FlowcartController' . $controller;
-	$controller     = new $controllerName;
-}
-else
-{
-	// Load the default controller
-	$controller = JControllerLegacy::getInstance('Flowcart');
+	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
-$controller->execute($task);
-
-// Redirect if set by the controller
+// Execute the task.
+$controller	= JControllerLegacy::getInstance('Flowcart');
+$controller->execute(JFactory::getApplication()->input->get('task', 'Panel'));
 $controller->redirect();

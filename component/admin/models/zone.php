@@ -9,7 +9,7 @@
  */
 defined('_JEXEC') or die;
 
-JLoader::import('flowcart.classes.model');
+ JLoader::import('joomla.application.component.modeladmin');
 
 /**
  * Flowcart Zone Model
@@ -20,7 +20,7 @@ JLoader::import('flowcart.classes.model');
  * @since       2.5
  *
  */
-class FlowcartModelZone extends FlowcartClassesModel
+class FlowcartModelZone extends JModelAdmin
 {
 	/**
 	 * @var		string	The prefix to use with controller messages.
@@ -28,4 +28,33 @@ class FlowcartModelZone extends FlowcartClassesModel
 	 */
 	protected $text_prefix = 'COM_FLOWCART';
 
+	protected $view_list = 'zones';
+
+	public function getForm($data = array(), $loadData = true)
+	{
+		// Get the form.
+		$form = $this->loadForm('com_flowcart.zone', 'zone', array('control' => 'jform', 'load_data' => $loadData));
+
+		if (empty($form)) {
+			return false;
+		}
+
+		return $form;
+	}
+
+	/**
+	 * Method to get a single record.
+	 *
+	 * @param   integer  $pk  The id of the primary key.
+	 *
+	 * @return	mixed	Object on success, false on failure.
+	 */
+	public function getItem($pk = null)
+	{
+		if ($item = parent::getItem($pk))
+		{
+		}
+
+		return $item;
+	}
 }

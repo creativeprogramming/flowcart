@@ -9,7 +9,7 @@
  */
 defined('_JEXEC') or die;
 
-JLoader::import('joomla.application.component.controller');
+JLoader::import('joomla.application.component.controlleradmin');
 
 /**
  * Flowcart Country List Controller
@@ -19,8 +19,14 @@ JLoader::import('joomla.application.component.controller');
  *
  * @since       2.5
  */
-class FlowcartControllerCountries extends JControllerLegacy
+class FlowcartControllerCountries extends JControllerAdmin
 {
+	/**
+	 * @var    string  The prefix to use with controller messages.
+	 * @since  2.5
+	 */
+	protected $text_prefix = 'COM_FLOWCART_COUNTRIES';
+
 	/**
 	 * Display method
 	 *

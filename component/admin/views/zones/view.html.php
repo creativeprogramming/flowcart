@@ -34,6 +34,13 @@ class FlowcartViewZones extends JViewLegacy
 		$lang = JFactory::getLanguage();
 		$lang->load('com_flowcart', JPATH_COMPONENT_ADMINISTRATOR);
 
+		// Get items
+		$this->items = $this->get('Items');
+
+		// Calls getState in parent class and populateState() in model
+		$this->state = $this->get('State');
+		$this->pagination = $this->get('Pagination');
+
 		// We don't need toolbar in the modal window.
 		if ($this->getLayout() !== 'modal')
 		{
@@ -53,14 +60,58 @@ class FlowcartViewZones extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_FLOWCART_ZONE_LIST_TITLE'), 'article.png');
+		require_once JPATH_COMPONENT_ADMINISTRATOR . '/helpers/flowcart.php';
 
+		$canDo = FlowcartHelper::getActions($this->state->get('filter.category_id'));
 		$user	= JFactory::getUser();
 
 		if ($user->authorise('core.admin', 'com_flowcart.panel'))
 		{
-			JToolBarHelper::preferences('com_flowcart');
+			// Page title
+			JToolBarHelper::title(JText::_('COM_FLOWCART_ZONE_LIST_TITLE'), 'article.png');
+
+			// Back button
+			JToolBarHelper::back();
 			JToolBarHelper::divider();
+
+			// Add / edit
+			if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_flowcart', 'core.create'))) > 0)
+			{
+				JToolBarHelper::addNew('zone.add', 'JTOOLBAR_NEW');
+			}
+			if (($canDo->get('core.edit')))
+			{
+				JToolBarHelper::editList('zone.edit', 'JTOOLBAR_EDIT');
+			}
+
+			// Publish / Unpublish
+			if ($canDo->get('core.edit.state'))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::custom('zones.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+				JToolBarHelper::custom('zones.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			}
+
+			// Delete / Trash
+			if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::deleteList('', 'zones.delete', 'JTOOLBAR_EMPTY_TRASH');
+				JToolBarHelper::divider();
+			}
+			elseif ($canDo->get('core.edit.state'))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::trash('zones.trash', 'JTOOLBAR_TRASH');
+				JToolBarHelper::divider();
+			}
+
+			// Preferences
+			if ($canDo->get('core.admin'))
+			{
+				JToolBarHelper::preferences('com_flowcart');
+				JToolBarHelper::divider();
+			}
 		}
 	}
 }

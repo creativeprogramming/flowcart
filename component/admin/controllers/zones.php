@@ -9,7 +9,7 @@
  */
 defined('_JEXEC') or die;
 
-JLoader::import('joomla.application.component.controller');
+JLoader::import('joomla.application.component.controlleradmin');
 
 /**
  * Flowcart Zone List Controller
@@ -19,18 +19,21 @@ JLoader::import('joomla.application.component.controller');
  *
  * @since       2.5
  */
-class FlowcartControllerZones extends JControllerLegacy
+class FlowcartControllerZones extends JControllerAdmin
 {
 	/**
-	 * Display method
-	 *
-	 * @param   boolean  $cachable   Cache display
-	 * @param   array    $urlparams  urlparams
-	 *
-	 * @return void
+	 * @var    string  The prefix to use with controller messages.
+	 * @since  2.5
 	 */
-	function display($cachable = false, $urlparams = array())
-	{
-		parent::display();
-	}
+	protected $text_prefix = 'COM_FLOWCART_ZONES';
+
+    /**
+     * Proxy for getModel.
+     * @since       2.5
+     */
+    public function getModel($name = 'Zones', $prefix = 'FlowcartModel')
+    {
+            $model = parent::getModel($name, $prefix, array('ignore_request' => true));
+            return $model;
+    }
 }

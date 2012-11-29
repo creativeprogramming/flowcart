@@ -9,7 +9,7 @@
  */
 defined('_JEXEC') or die;
 
-JLoader::import('joomla.application.component.controller');
+JLoader::import('joomla.application.component.controlleradmin');
 
 /**
  * Flowcart Currency List Controller
@@ -19,8 +19,14 @@ JLoader::import('joomla.application.component.controller');
  *
  * @since       2.5
  */
-class FlowcartControllerCurrencies extends JControllerLegacy
+class FlowcartControllerCurrencies extends JControllerAdmin
 {
+	/**
+	 * @var    string  The prefix to use with controller messages.
+	 * @since  2.5
+	 */
+	protected $text_prefix = 'COM_FLOWCART_CURRENCIES';
+
 	/**
 	 * Display method
 	 *

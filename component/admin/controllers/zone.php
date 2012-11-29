@@ -9,7 +9,7 @@
  */
 defined('_JEXEC') or die;
 
-JLoader::import('joomla.application.component.controller');
+JLoader::import('joomla.application.component.controllerform');
 
 /**
  * Flowcart Zone Form Controller
@@ -19,8 +19,14 @@ JLoader::import('joomla.application.component.controller');
  *
  * @since       2.5
  */
-class FlowcartControllerZone extends JControllerLegacy
+class FlowcartControllerZone extends JControllerForm
 {
+	/**
+	 * @var    string  The prefix to use with controller messages.
+	 * @since  2.5
+	 */
+	protected $text_prefix = 'COM_FLOWCART_ZONE';
+
 	/**
 	 * Display method
 	 *
@@ -33,4 +39,14 @@ class FlowcartControllerZone extends JControllerLegacy
 	{
 		parent::display();
 	}
+
+    /**
+     * Proxy for getModel.
+     * @since       2.5
+     */
+    public function getModel($name = 'Zone', $prefix = 'FlowcartModel')
+    {
+            $model = parent::getModel($name, $prefix, array('ignore_request' => true));
+            return $model;
+    }
 }
