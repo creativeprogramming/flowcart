@@ -130,7 +130,15 @@ class FlowcartModelZones extends JModelList
 		return $query;
 	}
 
-
+	/**
+	 * Publish/Unpublish items
+	 *
+	 * @param   mixed    $pks     id or array of ids of items to be published/unpublished
+	 * @param   integer  $state   1/0 - Publish/Unpublish
+	 * @param   integer  $userId  [description]
+	 *
+	 * @return [type]          [description]
+	 */
 	public function publish($pks = null, $state = 1, $userId = 0)
 	{
 		// Initialise variables.
@@ -140,7 +148,13 @@ class FlowcartModelZones extends JModelList
 		return true;
 	}
 
-
+	/**
+	 * Delete items
+	 *
+	 * @param   mixed  $pks  id or array of ids of items to be deleted
+	 *
+	 * @return  boolean  delete ok?
+	 */
 	public function delete($pks = null)
 	{
 

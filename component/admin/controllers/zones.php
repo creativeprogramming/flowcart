@@ -27,13 +27,17 @@ class FlowcartControllerZones extends JControllerAdmin
 	 */
 	protected $text_prefix = 'COM_FLOWCART_ZONES';
 
-    /**
-     * Proxy for getModel.
-     * @since       2.5
+	/**
+     * Get the associated model
+     *
+     * @param   string  $name    Name of the model
+     * @param   string  $prefix  prefix of the model
+     *
+     * @return  object  The model
      */
-    public function getModel($name = 'Zones', $prefix = 'FlowcartModel')
-    {
-            $model = parent::getModel($name, $prefix, array('ignore_request' => true));
-            return $model;
-    }
+	public function getModel($name = 'Zones', $prefix = 'FlowcartModel')
+	{
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
+	}
 }

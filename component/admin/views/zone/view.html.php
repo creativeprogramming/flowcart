@@ -62,8 +62,16 @@ class FlowcartViewZone extends JViewLegacy
 
 		if ($user->authorise('core.admin', 'com_flowcart.panel'))
 		{
-			JToolBarHelper::preferences('com_flowcart');
-			JToolBarHelper::divider();
+			JToolBarHelper::save('zone.save', 'JTOOLBAR_SAVE');
 		}
+		if (empty($this->item->id))
+		{
+			JToolBarHelper::cancel('zone.cancel', 'JTOOLBAR_CANCEL');
+		}
+		else
+		{
+			JToolBarHelper::cancel('zone.cancel', 'JTOOLBAR_CLOSE');
+		};
+		JToolBarHelper::divider();
 	}
 }

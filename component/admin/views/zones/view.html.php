@@ -38,7 +38,7 @@ class FlowcartViewZones extends JViewLegacy
 		$this->items = $this->get('Items');
 
 		// Calls getState in parent class and populateState() in model
-		$this->state = $this->get('State');
+		$this->state      = $this->get('State');
 		$this->pagination = $this->get('Pagination');
 
 		// We don't need toolbar in the modal window.

@@ -65,7 +65,7 @@ class TableZone extends JTable
 		// Update the publishing state for rows with the given primary keys.
 		$this->_db->setQuery(
 			'UPDATE `'.$this->_tbl.'`' .
-			' SET `state` = '.(int) $state .
+			' SET `active` = '.(int) $state .
 			' WHERE ('.$where.')' .
 			$checkin
 		);
@@ -89,7 +89,7 @@ class TableZone extends JTable
 
 		// If the JTable instance value is in the list of primary keys that were set, set the instance.
 		if (in_array($this->$k, $pks)) {
-			$this->state = $state;
+			$this->active = $state;
 		}
 
 		$this->setError('');

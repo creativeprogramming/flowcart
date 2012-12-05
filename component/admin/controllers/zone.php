@@ -40,13 +40,17 @@ class FlowcartControllerZone extends JControllerForm
 		parent::display();
 	}
 
-    /**
-     * Proxy for getModel.
-     * @since       2.5
-     */
-    public function getModel($name = 'Zone', $prefix = 'FlowcartModel')
-    {
-            $model = parent::getModel($name, $prefix, array('ignore_request' => true));
-            return $model;
-    }
+	/**
+	 * Get the associated model
+	 *
+	 * @param   string  $name    Name of the model
+	 * @param   string  $prefix  prefix of the model
+	 *
+	 * @return  object  The model
+	 */
+	public function getModel($name = 'Zone', $prefix = 'FlowcartModel')
+	{
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
+	}
 }

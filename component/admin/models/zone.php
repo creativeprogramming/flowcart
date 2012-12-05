@@ -9,7 +9,7 @@
  */
 defined('_JEXEC') or die;
 
- JLoader::import('joomla.application.component.modeladmin');
+JLoader::import('joomla.application.component.modeladmin');
 
 /**
  * Flowcart Zone Model
@@ -30,16 +30,58 @@ class FlowcartModelZone extends JModelAdmin
 
 	protected $view_list = 'zones';
 
+	/**
+	 * Get the zone form
+	 *
+	 * @param   array    $data      data
+	 * @param   boolean  $loadData  load current data
+	 *
+	 * @return JForm/false  the JForm object or false
+	 */
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
 		$form = $this->loadForm('com_flowcart.zone', 'zone', array('control' => 'jform', 'load_data' => $loadData));
 
-		if (empty($form)) {
+		if (empty($form))
+		{
 			return false;
 		}
 
 		return $form;
+	}
+
+	/**
+	 * Get the associated JTable
+	 *
+	 * @param   string  $type    Table name
+	 * @param   string  $prefix  Table prefix
+	 * @param   array   $config  Configuration array
+	 *
+	 * @return JTable
+	 */
+	public function getTable($type = 'zone', $prefix = 'Table', $config = array())
+	{
+		return JTable::getInstance($type, $prefix, $config);
+	}
+
+	/**
+	 * Load the form data from session / table
+	 *
+	 * @return object  The data
+	 */
+	protected function loadFormData()
+	{
+		// Check the session for previously entered form data.
+		$data = JFactory::getApplication()->getUserState('com_flowcart.edit.zone.data', array());
+
+		// If no session data try to load item
+		if (empty($data))
+		{
+			$data = $this->getItem();
+		}
+
+		return $data;
 	}
 
 	/**
@@ -51,10 +93,6 @@ class FlowcartModelZone extends JModelAdmin
 	 */
 	public function getItem($pk = null)
 	{
-		if ($item = parent::getItem($pk))
-		{
-		}
-
-		return $item;
+		return parent::getItem($pk);
 	}
 }

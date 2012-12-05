@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.multiselect');
 $user	= JFactory::getUser();
-$action = JRoute::_('index.php?option=com_flowcart');
+$action = JRoute::_('index.php?option=com_flowcart&view=zones');
 $listOrder	= $this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
 $saveOrder	= $listOrder == 'z.ordering';
@@ -81,7 +81,7 @@ $saveOrder	= $listOrder == 'z.ordering';
 								<?php echo $this->escape($item->name);?>
 							</td>
 							<td class="center">
-								<?php echo JHtml::_('jgrid.published', $item->state, $i, 'zones.', $canChange, 'cb'); ?>
+								<?php echo JHtml::_('jgrid.published', $item->active, $i, 'zones.', $canChange, 'cb'); ?>
 							</td>
 							<td>
 								<?php echo $item->id; ?>
