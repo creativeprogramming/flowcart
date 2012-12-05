@@ -21,6 +21,24 @@ CREATE TABLE IF NOT EXISTS `#__flowcart_countries` (
 	PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8;
 
+CREATE TABLE IF NOT EXISTS `#__flowcart_products` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(128) NOT NULL,
+	`manufacturer_id` INT(10) NULL DEFAULT NULL,
+	`category_default_id` INT(10) NULL DEFAULT NULL,
+	`shop_default_id` INT(10) NULL DEFAULT '1',
+	`tax_rules_group_id` INT(10) NULL DEFAULT NULL,
+	`ean13` VARCHAR(13) NULL DEFAULT NULL,
+	`reference` VARCHAR(32) NULL DEFAULT NULL,
+	`supplier_reference` VARCHAR(32) NULL DEFAULT NULL,
+	`show_price` TINYINT(1) NOT NULL,
+	`is_virtual` TINYINT(1) NOT NULL,
+	`active` TINYINT(1) NOT NULL,
+	`created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8;
+
 CREATE TABLE IF NOT EXISTS `#__flowcart_states` (
 	`id` INT(10) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(128) NOT NULL,

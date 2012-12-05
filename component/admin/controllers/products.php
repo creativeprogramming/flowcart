@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 JLoader::import('joomla.application.component.controlleradmin');
 
 /**
- * Flowcart Products Controller
+ * Flowcart Product List Controller
  *
  * @package     Flowcart.Component
  * @subpackage  Administrator
@@ -28,16 +28,16 @@ class FlowcartControllerProducts extends JControllerAdmin
 	protected $text_prefix = 'COM_FLOWCART_PRODUCTS';
 
 	/**
-	 * Display method
+	 * Get the associated model
 	 *
-	 * @param   boolean  $cachable   Cache display
-	 * @param   array    $urlparams  urlparams
+	 * @param   string  $name    Name of the model
+	 * @param   string  $prefix  prefix of the model
 	 *
-	 * @return void
+	 * @return  object  The model
 	 */
-	function display($cachable = false, $urlparams = array())
+	public function getModel($name = 'Products', $prefix = 'FlowcartModel')
 	{
-		parent::display();
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
 	}
-
 }

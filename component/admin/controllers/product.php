@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 JLoader::import('joomla.application.component.controllerform');
 
 /**
- * Flowcart Product Controller
+ * Flowcart Product Form Controller
  *
  * @package     Flowcart.Component
  * @subpackage  Administrator
@@ -38,5 +38,19 @@ class FlowcartControllerProduct extends JControllerForm
 	function display($cachable = false, $urlparams = array())
 	{
 		parent::display();
+	}
+
+	/**
+	 * Get the associated model
+	 *
+	 * @param   string  $name    Name of the model
+	 * @param   string  $prefix  prefix of the model
+	 *
+	 * @return  object  The model
+	 */
+	public function getModel($name = 'Product', $prefix = 'FlowcartModel')
+	{
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
 	}
 }
