@@ -12,6 +12,7 @@
 	<description>Flowcart Libraries</description>
 	<files>
 		<folder>classes</folder>
+		<folder>fields</folder>
 		<folder>helpers</folder>
 		<filename>index.html</filename>
 	</files>
