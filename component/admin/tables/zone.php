@@ -1,19 +1,20 @@
 <?php
 /**
- * @version		$Id: weblink.php 18287 2010-07-28 19:09:44Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     Flowcart.Component
+ * @subpackage  Administrator
+ *
+ * @author      Seth Warburton & Roberto Segura <social@flowcart.me>
+ * @copyright   (c) 2012 Flowcart. All Rights Reserved.
+ * @license     GNU/GPL 2, http://www.gnu.org/licenses/gpl-2.0.htm
  */
-
-// No direct access
 defined('_JEXEC') or die;
 
 /**
- * Weblink Table class
+ * Zones Table class
  *
- * @package		Joomla.Administrator
- * @subpackage	com_weblinks
- * @since		1.5
+ * @package     Flowcart.Component
+ * @subpackage  Administrator
+ * @since		2.5
  */
 class TableZone extends JTable
 {
