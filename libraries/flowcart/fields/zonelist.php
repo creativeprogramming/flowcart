@@ -35,6 +35,7 @@ class JFormFieldZonelist extends JFormFieldList {
 	{
 		// Initialize variables.
 		$options = array();
+		$options[] = JHtml::_('select.option', '', JText::_('COM_FLOWCART_SELECT'));
 
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
