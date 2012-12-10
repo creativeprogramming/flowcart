@@ -46,7 +46,7 @@ $saveOrder	= $listOrder == 'z.ordering';
 						<input type="checkbox" name="check-toggle" onclick="checkAll(this);">
 					</th>
 					<th class="name">
-						<?php echo JHtml::_('grid.sort',  'COM_FLOWCART_ZONE_NAME', 'z.name', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('grid.sort',  'COM_FLOWCART_NAME_LABEL', 'z.name', $listDirn, $listOrder); ?>
 					</th>
 					<th width="5%">
 						<?php echo JHtml::_('grid.sort',  'JPUBLISHED', 'z.active', $listDirn, $listOrder); ?>
@@ -78,7 +78,9 @@ $saveOrder	= $listOrder == 'z.ordering';
 								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 							</td>
 							<td>
-								<?php echo $this->escape($item->name);?>
+								<a href="<?php echo JRoute::_('index.php?option=com_flowcart&task=zone.edit&id='.$item->id);?>">
+									<?php echo $this->escape($item->name); ?>
+								</a>
 							</td>
 							<td class="center">
 								<?php echo JHtml::_('jgrid.published', $item->active, $i, 'zones.', $canChange, 'cb'); ?>
