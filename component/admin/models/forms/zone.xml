@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset>
+	<fieldset addfieldpath="/libraries/flowcart/fields">
 		<field name="id" type="hidden"
 			default="0"
 			label="COM_FLOWCART_ZONE_ID_LABEL"

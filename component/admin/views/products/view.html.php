@@ -71,7 +71,7 @@ class FlowcartViewProducts extends JViewLegacy
 			JToolBarHelper::title(JText::_('COM_FLOWCART_PRODUCT_LIST_TITLE'), 'article.png');
 
 			// Back button
-			JToolBarHelper::back();
+			JToolBarHelper::custom('products.topanel', 'back.png', 'back_f2.png', 'COM_FLOWCART_CONTROL_PANEL_TITLE', false);
 			JToolBarHelper::divider();
 
 			// Add / edit

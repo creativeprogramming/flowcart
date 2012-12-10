@@ -40,4 +40,14 @@ class FlowcartControllerProducts extends JControllerAdmin
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;
 	}
+
+	/**
+	 * Return to control panel
+	 * 
+	 * @return void
+	 */
+	public function toPanel()
+	{
+		$this->setRedirect(JRoute::_('index.php?option=com_flowcart', false));
+	}
 }

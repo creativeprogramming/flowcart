@@ -9,6 +9,9 @@
  */
 defined('_JEXEC') or die;
 
+JLoader::import('joomla.form.formfield');
+JFormHelper::loadFieldClass('list');
+
 /**
  * Zone list field type
  *
@@ -34,43 +37,18 @@ class JFormFieldZonelist extends JFormFieldList {
 		$options = array();
 
 		$db = JFactory::getDbo();
-
-		// Load overrides / user defined themes
-		$overridesPath = $bsCollapseObject->getPath('tplPath') . '/html/' . DIDMOD02 . '/templates';
-
-		if (JFolder::exists($overridesPath))
+		$query = $db->getQuery(true);
+		$query->select('id, name')
+			->from('#__flowcart_zones')
+			->where('active = 1');
+		$db->setQuery($query);
+		if ($zones = $db->loadObjectList())
 		{
-
-			$overridesUrl = $bsCollapseObject->getUrl('tplUrl') . '/html/' . DIDMOD02 . '/templates';
-			$bsCollapseObject->addTemplatesFromPathAndUrl($overridesPath, $overridesUrl, 'tpl');
-		}
-
-		// Get the template list
-		$availableTemplates = $bsCollapseObject->getTemplates();
-
-		if ($availableTemplates)
-		{
-			foreach ($availableTemplates as $name => $phpRobertoTemplate)
+			foreach ($zones as $zone)
 			{
-				$options[]  = $this->genOption($name . ' (' . $phpRobertoTemplate->location . ')', $name);
+				$options[] = JHtml::_('select.option', $zone->id, $zone->name);
 			}
 		}
-
 		return $options;
-	}
-
-	/**
-	 * Generate an option object
-	 * @param string $text
-	 * @param string $value
-	 *
-	 * @return object - stdclass text/value object
-	 */
-	private function genOption($text, $value)
-	{
-		$option = new stdClass;
-		$option->value = $value;
-		$option->text = JText::_($text);
-		return $option;
 	}
 }
