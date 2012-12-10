@@ -39,4 +39,18 @@ class FlowcartControllerCountry extends JControllerForm
 	{
 		parent::display();
 	}
+
+	/**
+	 * Get the associated model
+	 *
+	 * @param   string  $name    Name of the model
+	 * @param   string  $prefix  prefix of the model
+	 *
+	 * @return  object  The model
+	 */
+	public function getModel($name = 'Country', $prefix = 'FlowcartModel')
+	{
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
+	}
 }

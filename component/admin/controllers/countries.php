@@ -28,15 +28,26 @@ class FlowcartControllerCountries extends JControllerAdmin
 	protected $text_prefix = 'COM_FLOWCART_COUNTRIES';
 
 	/**
-	 * Display method
-	 *
-	 * @param   boolean  $cachable   Cache display
-	 * @param   array    $urlparams  urlparams
-	 *
+     * Get the associated model
+     *
+     * @param   string  $name    Name of the model
+     * @param   string  $prefix  prefix of the model
+     *
+     * @return  object  The model
+     */
+	public function getModel($name = 'Countries', $prefix = 'FlowcartModel')
+	{
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
+	}
+
+	/**
+	 * Return to control panel
+	 * 
 	 * @return void
 	 */
-	function display($cachable = false, $urlparams = array())
+	public function toPanel()
 	{
-		parent::display();
+		$this->setRedirect(JRoute::_('index.php?option=com_flowcart', false));
 	}
 }
