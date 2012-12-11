@@ -34,6 +34,9 @@ class FlowcartController extends JControllerLegacy
 	 */
 	function display()
 	{
+		// Load the submenu.
+		FlowcartHelper::addSubmenu(JRequest::getCmd('view', 'products'));
+		
 		// Call parent behavior
 		parent::display();
 	}

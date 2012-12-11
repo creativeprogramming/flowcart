@@ -9,6 +9,9 @@
  */
 defined('_JEXEC') or die;
 
+// Register helper class
+JLoader::register('FlowcartHelper', dirname(__FILE__) . '/helpers/flowcart.php');
+
 // Access check.
 if (!JFactory::getUser()->authorise('core.manage', 'com_flowcart'))
 {

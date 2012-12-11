@@ -53,4 +53,31 @@ class FlowcartHelper
 
 		return $result;
 	}
+
+	/**
+	 * Configure the Linkbar.
+	 *
+	 * @param	string	$vName	The name of the active view.
+	 *
+	 * @return	void
+	 * @since	1.6
+	 */
+	public static function addSubmenu($vName)
+	{
+		JSubMenuHelper::addEntry(
+			JText::_('COM_FLOWCART_PRODUCTS'),
+			'index.php?option=com_flowcart&view=products',
+			$vName == 'products'
+		);
+		JSubMenuHelper::addEntry(
+			JText::_('COM_FLOWCART_ZONES'),
+			'index.php?option=com_flowcart&view=zones',
+			$vName == 'zones');
+		JSubMenuHelper::addEntry(
+			JText::_('COM_FLOWCART_COUNTRIES'),
+			'index.php?option=com_flowcart&view=countries',
+			$vName == 'countries'
+		);
+	}
+
 }

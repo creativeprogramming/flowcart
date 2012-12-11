@@ -60,8 +60,6 @@ class FlowcartViewZones extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		require_once JPATH_COMPONENT_ADMINISTRATOR . '/helpers/flowcart.php';
-
 		$canDo = FlowcartHelper::getActions($this->state->get('filter.category_id'));
 		$user	= JFactory::getUser();
 
