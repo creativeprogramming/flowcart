@@ -56,6 +56,11 @@ class FlowcartViewCountry extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
+		// Hide the navigation bar
+		$jinput = JFactory::getApplication()->input;
+		$jinput->set('hidemainmenu', true);
+
+		// Set Toolbar title
 		JToolBarHelper::title(JText::_('COM_FLOWCART_COUNTRY_FORM_TITLE'), 'article.png');
 
 		$user	= JFactory::getUser();
