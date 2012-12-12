@@ -3,20 +3,20 @@
 	<fieldset addfieldpath="/libraries/flowcart/fields">
 		<field name="id" type="hidden"
 			default="0"
-			label="COM_FLOWCART_PRODUCT_ID_LABEL"
-			DESCRIPTION="COM_FLOWCART_PRODUCT_ID_DESC"
+			label="COM_FLOWCART_ID_LABEL"
+			DESCRIPTION="COM_FLOWCART_ID_DESC"
 			readonly="true"
 			size="10"
 		/>
 		<field name="name" type="text"
-			description="COM_FLOWCART_PRODUCT_NAME_DESC"
-			label="COM_FLOWCART_PRODUCT_NAME"
+			description="COM_FLOWCART_NAME_DESC"
+			label="COM_FLOWCART_NAME_LABEL"
 			required="true"
 			size="30"
 		/>
 		<field name="active" type="radio"
-			description="COM_FLOWCART_PRODUCT_ACTIVE"
-			label="COM_FLOWCART_PRODUCT_ACTIVE_DESC"
+			description="COM_FLOWCART_ACTIVE_DESC"
+			label="COM_FLOWCART_ACTIVE_LABEL"
 			required="true"
 			size="1" default="1" >
 			<option value="1">JPUBLISHED</option>

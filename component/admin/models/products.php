@@ -48,7 +48,7 @@ class FlowcartModelProducts extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('z.name', 'asc');
+		parent::populateState('p.name', 'asc');
 	}
 
 	/**
@@ -90,20 +90,20 @@ class FlowcartModelProducts extends JModelList
 		$query->select(
 			$this->getState(
 				'list.select',
-				'z.id, z.name, z.active'
+				'p.id, p.name, p.active'
 			)
 		);
-		$query->from('#__flowcart_products AS z');
+		$query->from('#__flowcart_products AS p');
 
 		// Filter by published state
 		$published = $this->getState('filter.state');
 		if (is_numeric($published))
 		{
-			$query->where('z.active = ' . (int) $published);
+			$query->where('p.active = ' . (int) $published);
 		}
 		elseif ($published === '')
 		{
-			$query->where('(z.active IN (0, 1))');
+			$query->where('(p.active IN (0, 1))');
 		}
 
 		// Filter by search in title
@@ -112,18 +112,18 @@ class FlowcartModelProducts extends JModelList
 		{
 			if (stripos($search, 'id:') === 0)
 			{
-				$query->where('z.id = ' . (int) substr($search, 3));
+				$query->where('p.id = ' . (int) substr($search, 3));
 			}
 			else
 			{
 				$search = $db->Quote('%' . $db->getEscaped($search, true) . '%');
-				$query->where('z.name LIKE ' . $search);
+				$query->where('p.name LIKE ' . $search);
 			}
 		}
 		// Add the list ordering clause.
 		$orderCol	= $this->state->get('list.ordering');
 		$orderDirn	= $this->state->get('list.direction');
-		$orderCol = 'z.id ' . $orderDirn . ', z.id';
+		$orderCol = 'p.id ' . $orderDirn . ', p.id';
 
 		$query->order($db->getEscaped($orderCol . ' ' . $orderDirn));
 

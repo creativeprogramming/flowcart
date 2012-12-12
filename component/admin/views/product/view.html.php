@@ -40,6 +40,9 @@ class FlowcartViewProduct extends JViewLegacy
 			$this->addToolbar();
 		}
 
+		$this->form	= $this->get('Form');
+		$this->item	= $this->get('Item');
+
 		// Display the template
 		parent::display($tpl);
 	}
@@ -64,8 +67,16 @@ class FlowcartViewProduct extends JViewLegacy
 
 		if ($user->authorise('core.admin', 'com_flowcart.panel'))
 		{
-			JToolBarHelper::preferences('com_flowcart');
-			JToolBarHelper::divider();
+			JToolBarHelper::save('product.save', 'JTOOLBAR_SAVE');
 		}
+		if (empty($this->item->id))
+		{
+			JToolBarHelper::cancel('product.cancel', 'JTOOLBAR_CANCEL');
+		}
+		else
+		{
+			JToolBarHelper::cancel('product.cancel', 'JTOOLBAR_CLOSE');
+		};
+		JToolBarHelper::divider();
 	}
 }
