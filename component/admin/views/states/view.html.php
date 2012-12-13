@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Flowcart.Component
- * @subpackage  Administrator
+ * @subpackage  Views.States
  *
  * @author      Seth Warburton & Roberto Segura <social@flowcart.me>
  * @copyright   (c) 2012 Flowcart. All Rights Reserved.
@@ -15,7 +15,7 @@ JLoader::import('joomla.application.component.view');
  * Flowcart State List View
  *
  * @package     Flowcart.Component
- * @subpackage  Administrator
+ * @subpackage  Views.States
  *
  * @since       2.5
  */
@@ -33,6 +33,13 @@ class FlowcartViewStates extends JViewLegacy
 		// Loading language from component folder
 		$lang = JFactory::getLanguage();
 		$lang->load('com_flowcart', JPATH_COMPONENT_ADMINISTRATOR);
+
+		// Get items
+		$this->items = $this->get('Items');
+
+		// Calls getState in parent class and populateState() in model
+		$this->state      = $this->get('State');
+		$this->pagination = $this->get('Pagination');
 
 		// We don't need toolbar in the modal window.
 		if ($this->getLayout() !== 'modal')
@@ -53,14 +60,56 @@ class FlowcartViewStates extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_FLOWCART_STATE_LIST_TITLE'), 'article.png');
-
+		$canDo = FlowcartHelper::getActions($this->state->get('filter.category_id'));
 		$user	= JFactory::getUser();
 
 		if ($user->authorise('core.admin', 'com_flowcart.panel'))
 		{
-			JToolBarHelper::preferences('com_flowcart');
+			// Page title
+			JToolBarHelper::title(JText::_('COM_FLOWCART_STATE_LIST_TITLE'), 'article.png');
+
+			// Back button
+			JToolBarHelper::custom('states.topanel', 'back.png', 'back_f2.png', 'COM_FLOWCART_CONTROL_PANEL_TITLE', false);
 			JToolBarHelper::divider();
+
+			// Add / edit
+			if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_flowcart', 'core.create'))) > 0)
+			{
+				JToolBarHelper::addNew('state.add', 'JTOOLBAR_NEW');
+			}
+			if (($canDo->get('core.edit')))
+			{
+				JToolBarHelper::editList('state.edit', 'JTOOLBAR_EDIT');
+			}
+
+			// Publish / Unpublish
+			if ($canDo->get('core.edit.state'))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::custom('states.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+				JToolBarHelper::custom('states.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			}
+
+			// Delete / Trash
+			if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::deleteList('', 'zones.delete', 'JTOOLBAR_EMPTY_TRASH');
+				JToolBarHelper::divider();
+			}
+			elseif ($canDo->get('core.edit.state'))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::trash('states.trash', 'JTOOLBAR_TRASH');
+				JToolBarHelper::divider();
+			}
+
+			// Preferences
+			if ($canDo->get('core.admin'))
+			{
+				JToolBarHelper::preferences('com_flowcart');
+				JToolBarHelper::divider();
+			}
 		}
 	}
 }

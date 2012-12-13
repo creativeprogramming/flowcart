@@ -70,13 +70,19 @@ class FlowcartHelper
 			$vName == 'products'
 		);
 		JSubMenuHelper::addEntry(
-			JText::_('COM_FLOWCART_ZONES'),
-			'index.php?option=com_flowcart&view=zones',
-			$vName == 'zones');
-		JSubMenuHelper::addEntry(
 			JText::_('COM_FLOWCART_COUNTRIES'),
 			'index.php?option=com_flowcart&view=countries',
 			$vName == 'countries'
+		);
+		JSubMenuHelper::addEntry(
+			JText::_('COM_FLOWCART_STATES'),
+			'index.php?option=com_flowcart&view=states',
+			$vName == 'states'
+		);
+		JSubMenuHelper::addEntry(
+			JText::_('COM_FLOWCART_ZONES'),
+			'index.php?option=com_flowcart&view=zones',
+			$vName == 'zones'
 		);
 	}
 

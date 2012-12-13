@@ -48,6 +48,7 @@
             <menu view="taxes" link="option=com_flowcart&amp;view=taxes">COM_FLOWCART_TAXES</menu>
             <menu view="currencies" link="option=com_flowcart&amp;view=currencies">COM_FLOWCART_CURRENCIES</menu>
             <menu view="countries" link="option=com_flowcart&amp;view=countries">COM_FLOWCART_COUNTRIES</menu>
+            <menu view="states" link="option=com_flowcart&amp;view=states">COM_FLOWCART_STATES</menu>
             <menu view="zones" link="option=com_flowcart&amp;view=zones">COM_FLOWCART_ZONES</menu>
         </submenu>
 		<files folder="component/admin">

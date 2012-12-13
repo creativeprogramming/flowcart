@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Flowcart.Component
- * @subpackage  Models.Zone
+ * @subpackage  Models.State
  *
  * @author      Seth Warburton & Roberto Segura <social@flowcart.me>
  * @copyright   (c) 2012 Flowcart. All Rights Reserved.
@@ -12,15 +12,15 @@ defined('_JEXEC') or die;
 JLoader::import('joomla.application.component.modeladmin');
 
 /**
- * Flowcart Zone Model
+ * Flowcart State Model
  *
  * @version     25/11/2012
  * @package     Flowcart.Component
- * @subpackage  Models.Zone
+ * @subpackage  Models.State
  * @since       2.5
  *
  */
-class FlowcartModelZone extends JModelAdmin
+class FlowcartModelState extends JModelAdmin
 {
 	/**
 	 * @var		string	The prefix to use with controller messages.
@@ -28,10 +28,10 @@ class FlowcartModelZone extends JModelAdmin
 	 */
 	protected $text_prefix = 'COM_FLOWCART';
 
-	protected $view_list = 'zones';
+	protected $view_list = 'states';
 
 	/**
-	 * Get the zone form
+	 * Get the associated form
 	 *
 	 * @param   array    $data      data
 	 * @param   boolean  $loadData  load current data
@@ -41,7 +41,7 @@ class FlowcartModelZone extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_flowcart.zone', 'zone', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_flowcart.state', 'state', array('control' => 'jform', 'load_data' => $loadData));
 
 		if (empty($form))
 		{
@@ -60,7 +60,7 @@ class FlowcartModelZone extends JModelAdmin
 	 *
 	 * @return JTable
 	 */
-	public function getTable($type = 'zone', $prefix = 'Table', $config = array())
+	public function getTable($type = 'state', $prefix = 'Table', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -73,7 +73,7 @@ class FlowcartModelZone extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_flowcart.edit.zone.data', array());
+		$data = JFactory::getApplication()->getUserState('com_flowcart.edit.state.data', array());
 
 		// If no session data try to load item
 		if (empty($data))
